@@ -1,6 +1,15 @@
 # set working directory to the location of this script
 Set-Location -Path $PSScriptRoot
 
+
+$simulation_license_file = "./tools/simulation_license.json"
+$input_modules_and_table_excel_file = "./input/modules_and_tables.xlsx"
+$input_modules_and_table_jsonl_file = "./input/modules_and_tables.jsonl"
+$ledger_transactions_jsonl_file = "./input/ledger_transactions_json_file.jsonl"
+$reports_jsonl_file = "./input/ledger_transactions_json_file.jsonl"
+$input_reportssettings_file = "./input/reports_settings.xlsx"
+$reports_output_folder = "./output"
+
 #region functions
 function test-and-update-deno {
     $last_working_deno_ver = "1.11.3"
@@ -26,6 +35,7 @@ function test-and-update-simulationpackage {
 
     $last_working_simulationpackage_ver = "0.0.1"
 
+    #TODO
     <#
     take part of the code from
     https://deno.land/x/install@v0.1.4/install.ps1
@@ -48,11 +58,66 @@ function test-and-update-simulationpackage {
     #>
 
 }
+
+function run-convert-excel-modules-and-tables-to-json {
+
+    #TODO
+    <#
+    Call convert.exe with parameter:
+    --input $input_modules_and_table_excel_file
+    --output $input_modules_and_table_jsonl_file
+    #>
+}
+
+function run-main-js {
+
+    #TODO
+    <#
+    Call main.js with parameter:
+    --input $input_modules_and_table_jsonl_file
+    --output $ledger_transactions_jsonl_file
+    #>
+}
+
+function run-simulation {
+
+    #TODO
+    <#
+    call simulation.exe with parameter:
+    --license $simulation_license_file
+    --settings $input_reportssettings_file
+    --input $input_modules_and_table_jsonl_file
+    #>
+}
+
+function run-convert-reports-jsonl-to-excel {
+
+    #TODO
+    <#
+    Call convert.exe with parameter:
+    --input $reports_jsonl_file
+    --output $reports_output_folder
+    #>
+}
+
+
+Execute Convert with parameter:
+* —output pointing to /output folder
+
 #endregion functions
 
 test-and-update-deno
 
 test-and-update-simulationpackage
+
+run-convert-excel-modules-and-tables-to-json
+
+run-main-js
+
+run-simulation
+
+run-convert-reports-jsonl-to-excel
+
 
 # do other actions
 Write-Output "do other actions..."
