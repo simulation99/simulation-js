@@ -138,7 +138,7 @@ Remove-Item $errorFile -ErrorAction Ignore
 Set-Content -Path $fileA -Value 'Hello, World'  # create $fileA and put some text inside
 Add-Content -Path $fileA -Value 'Hello, World 2'  # append text to $fileA
 
-./tools/bin/deno run --allow-read --allow-write https://raw.githubusercontent.com/stefano77it/financial-modeling/master/temp-test-code/v1/zTempSomeCodeOnlyToTestACallToRemoteDenoCode.ts -i $fileA -o $fileB
+./tools/bin/deno run --allow-read --allow-write https://raw.githubusercontent.com/77it/financial-modeling/master/temp-test-code/v1/zTempSomeCodeOnlyToTestACallToRemoteDenoCode.ts -i $fileA -o $fileB
 
 if ((Get-FileHash $fileA).hash -eq (Get-FileHash $fileB).hash) {
     Write-Output "execution ended successfully"
